@@ -1,0 +1,87 @@
+﻿<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>@ViewBag.Title - Projekat ASP.NET</title>
+    @Styles.Render("~/Content/css")
+    @Scripts.Render("~/bundles/modernizr")
+
+</head>
+<body>
+    @**@
+    <nav class="navbar navbar-expand-lg navbar-dark bg-dark " style="margin-bottom: 20px;">
+        @Html.ActionLink("Projekat", "Index", "Home", new { area = "" }, new { @class = "navbar-brand" })
+        <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+            <span class="navbar-toggler-icon"></span>
+        </button>
+
+        <div class="collapse navbar-collapse" id="navbarSupportedContent">
+            <ul class="navbar-nav ml-auto" style="padding-right: 15px;">
+
+                <li class="nav-item dropdown">
+                    <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                        Basic Pages
+                    </a>
+                    <div class="dropdown-menu" aria-labelledby="navbarDropdown">
+                        @Html.ActionLink("Home", "Index", "Home", new { area = "" }, new { @class = "dropdown-item" })
+                        @Html.ActionLink("About", "About", "Home", new { area = "" }, new { @class = "dropdown-item" })
+                        @Html.ActionLink("Contact", "Contact", "Home", new { area = "" }, new { @class = "dropdown-item" })
+                    </div>
+                </li>
+
+                @Html.Partial("~/Views/Shared/_LoginPartial.cshtml")
+
+            </ul>
+        </div>
+    </nav>
+    @**@
+
+    <div class="container body-content">
+
+        <div class="container-fluid">
+            <div class="row">
+                @Html.Partial("~/Views/Admin/_AdminNavbar.cshtml")
+
+                <main role="main" class="col-md-9 ml-sm-auto col-lg-10 px-4">
+                    <div class="d-flex justify-content-between flex-wrap flex-md-nowrap align-items-center pt-3 pb-2 mb-3 border-bottom">
+                        <h1 class="h2">Dashboard</h1>
+                        <div class="btn-toolbar mb-2 mb-md-0">
+                            <div class="btn-group mr-2">
+                                <button class="btn btn-sm btn-outline-secondary">Share</button>
+                                <button class="btn btn-sm btn-outline-secondary">Export</button>
+                            </div>
+                            <button class="btn btn-sm btn-outline-secondary dropdown-toggle">
+                                <span data-feather="calendar"></span>
+                                This week
+                            </button>
+                        </div>
+                    </div>
+
+                    <!---<canvas class="my-4 w-100" id="myChart" width="900" height="380"></canvas> -->
+                    <div class="my-4 w-100">
+                        @RenderBody()
+                    </div>
+
+
+                </main>
+            </div>
+        </div>
+        <hr />
+        <footer>
+            <p class="text-center">&copy; @DateTime.Now.Year - My ASP.NET Application(Dusan Kostic , Vuk Sibanic)</p>
+        </footer>
+    </div>
+
+    @Scripts.Render("~/bundles/jquery")
+    @Scripts.Render("~/bundles/bootstrap")
+    @RenderSection("scripts", required: false)
+    <!-- Icons -->
+    <script src="https://unpkg.com/feather-icons/dist/feather.min.js"></script>
+    <script>
+        feather.replace()
+    </script>
+</body>
+</html>
+
+

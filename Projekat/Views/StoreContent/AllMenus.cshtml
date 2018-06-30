@@ -1,0 +1,36 @@
+﻿@model IEnumerable<Projekat.Models.MenuModels>
+
+@{
+    ViewBag.Title = "AllMenus";
+}
+
+<h2>AllMenus</h2>
+
+
+<table class="table">
+    <tr>
+        <th>
+            @Html.DisplayNameFor(model => model.MenuName)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.Desc)
+        </th>
+        <th></th>
+    </tr>
+
+@foreach (var item in Model) {
+    <tr>
+        <td>
+            @Html.DisplayFor(modelItem => item.MenuName)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.Desc)
+        </td>
+        <td>
+            @Html.ActionLink("Back To Restaurants", "Index") |
+            @Html.ActionLink("View Menu Items", "AllMenuItems", new { menuId = item.Id })
+        </td>
+    </tr>
+}
+
+</table>

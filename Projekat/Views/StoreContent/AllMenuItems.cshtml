@@ -1,0 +1,42 @@
+﻿@model IEnumerable<Projekat.Models.MenuItemModels>
+
+@{
+    ViewBag.Title = "AllMenuItems";
+}
+
+<h2>AllMenuItems</h2>
+
+
+<table class="table">
+    <tr>
+        <th>
+            @Html.DisplayNameFor(model => model.Name)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.Desc)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.Price)
+        </th>
+        <th></th>
+    </tr>
+
+@foreach (var item in Model) {
+    <tr>
+        <td>
+            @Html.DisplayFor(modelItem => item.Name)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.Desc)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.Price)
+        </td>
+        <td>
+            @Html.ActionLink("Back To Menues", "AllMenus", new { resId = item.RestaurantModels_id }) |
+            @Html.ActionLink("Buy Item", "Buy", new { itemId=item.Id }) |
+        </td>
+    </tr>
+}
+
+</table>

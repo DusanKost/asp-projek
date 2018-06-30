@@ -1,0 +1,55 @@
+﻿@using Microsoft.AspNet.Identity
+@if (Request.IsAuthenticated)
+{
+    using (Html.BeginForm("LogOff", "Account", FormMethod.Post, new { id = "logoutForm", @class = "navbar-right" }))
+    {
+        @Html.AntiForgeryToken()
+
+        @*<li class="nav-item">
+                @Html.ActionLink("Hello " + User.Identity.GetUserName() + "!", "Index", "Manage", routeValues: null, htmlAttributes: new { title = "Manage", @class = "nav-link" })
+            </li>
+            <li class="nav-item">
+                <a class="nav-link" href="javascript:document.getElementById('logoutForm').submit()">Log off</a>
+            </li>*@
+        <li class="nav-item dropdown">
+            <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                @User.Identity.GetUserName()
+            </a>
+            <div class="dropdown-menu" aria-labelledby="navbarDropdown">
+                @if (User.IsInRole("Admin"))
+                {
+                    @Html.ActionLink("Admin Dashboard", "Index", "Admin", routeValues: null, htmlAttributes: new { title = "Admin Dashboard", @class = "dropdown-item" });
+                }
+                @if (User.IsInRole("ROwner"))
+                {
+                    @Html.ActionLink("Restauront Dashboard", "Index", "RestaurantOwner", routeValues: null, htmlAttributes: new { title = "Restauront Dashboard", @class = "dropdown-item" });
+                }
+                @Html.ActionLink("Menage Acc", "Index", "Manage", routeValues: null, htmlAttributes: new { title = "Manage", @class = "dropdown-item" })
+                @Html.ActionLink("View Restaurants", "Index", "StoreContent", routeValues: null, htmlAttributes: new { title = "Storrer", @class = "dropdown-item" })
+                @Html.ActionLink("Cart", "Cart", "StoreContent", routeValues: null, htmlAttributes: new { title = "Cart", @class = "dropdown-item" })
+                @Html.ActionLink("All Transactions", "AllTransactions", "StoreContent", routeValues: null, htmlAttributes: new { title = "Trarnsactions", @class = "dropdown-item" })
+                @*Html.ActionLink("Hello " + User.Identity.GetUserName() + "!", "Index", "Manage", routeValues: null, htmlAttributes: new { title = "Manage", @class = "dropdown-item" })*@
+                <a class="dropdown-item" href="javascript:document.getElementById('logoutForm').submit()">Log off</a>
+            </div>
+        </li>
+    }
+}
+else
+{
+    <li class="nav-item dropdown">
+        <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+            Login
+        </a>
+        <div class="dropdown-menu" aria-labelledby="navbarDropdown">
+            @*Html.ActionLink("Hello " + User.Identity.GetUserName() + "!", "Index", "Manage", routeValues: null, htmlAttributes: new { title = "Manage", @class = "dropdown-item" })*@
+            @Html.ActionLink("Register", "Register", "Account", routeValues: null, htmlAttributes: new { id = "registerLink", @class = "dropdown-item" })
+            @Html.ActionLink("Log in", "Login", "Account", routeValues: null, htmlAttributes: new { id = "loginLink", @class = "dropdown-item" })
+        </div>
+    </li>
+    @*<li class="nav-item">
+        @Html.ActionLink("Register", "Register", "Account", routeValues: null, htmlAttributes: new { id = "registerLink", @class = "nav-link" })
+    </li>
+    <li class="nav-item">
+        @Html.ActionLink("Log in", "Login", "Account", routeValues: null, htmlAttributes: new { id = "loginLink", @class = "nav-link" })
+    </li>*@
+}
